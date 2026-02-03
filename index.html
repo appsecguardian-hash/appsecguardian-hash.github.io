@@ -298,10 +298,101 @@
     }
     footer a:hover { text-decoration: underline; }
     footer .gap-tag { margin-top: 0.75rem; font-size: 0.8rem; }
+
+    /* Login overlay */
+    #login-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    #login-overlay.hidden { display: none; }
+    .login-box {
+      width: 100%;
+      max-width: 380px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .login-box h2 { margin-bottom: 0.5rem; }
+    .login-box p { margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .login-box input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .login-box input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .login-box input::placeholder { color: var(--muted); }
+    .login-box .btn-login {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-box .btn-login:hover { background: var(--accent-dim); }
+    .login-box .error {
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+    .login-box .error.show { display: block; }
+    .lock-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      z-index: 100;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .lock-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .lock-btn.hidden { display: none; }
   </style>
 </head>
 <body>
-  <div class="container">
+  <!-- Login overlay -->
+  <div id="login-overlay">
+    <div class="login-box">
+      <h2>GanaSec</h2>
+      <p>Enter password to access</p>
+      <form id="login-form">
+        <input type="password" id="password" placeholder="Password" autocomplete="current-password" autofocus>
+        <button type="submit" class="btn-login">Unlock</button>
+        <div class="error" id="login-error">Incorrect password</div>
+      </form>
+    </div>
+  </div>
+
+  <button class="lock-btn hidden" id="lock-btn" type="button" title="Lock">🔒 Lock</button>
+
+  <div id="main-content" class="container">
     <header>
       <div class="logo">GanaSec Cyber Solutions Private Limited</div>
       <p class="tagline"><strong>Penetrate.</strong> Protect. <strong>Persist.</strong></p>
@@ -403,6 +494,58 @@
     </footer>
   </div>
 
+  <script>
+    (function() {
+      var UNLOCK_KEY = 'ganasec_unlocked';
+      /* To change password: run in console: Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode('YOUR_PASSWORD')))).map(b=>('0'+b.toString(16)).slice(-2)).join('') */
+      var PASSWORD_HASH = 'f974f552561c24be04ca0692ab9da1eca083c1019dc59055d865b0757b32140a'; /* ganasec */
+
+      function sha256(str) {
+        return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+          .then(function(buf) {
+            return Array.from(new Uint8Array(buf))
+              .map(function(b) { return ('0' + b.toString(16)).slice(-2); })
+              .join('');
+          });
+      }
+
+      function showContent() {
+        document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('main-content').style.display = 'block';
+        document.getElementById('lock-btn').classList.remove('hidden');
+      }
+      function showLogin() {
+        document.getElementById('login-overlay').classList.remove('hidden');
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('lock-btn').classList.add('hidden');
+        sessionStorage.removeItem(UNLOCK_KEY);
+      }
+
+      if (sessionStorage.getItem(UNLOCK_KEY) === '1') {
+        showContent();
+      } else {
+        document.getElementById('main-content').style.display = 'none';
+      }
+
+      document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var pw = document.getElementById('password').value;
+        var err = document.getElementById('login-error');
+        err.classList.remove('show');
+        sha256(pw).then(function(h) {
+          if (h === PASSWORD_HASH) {
+            sessionStorage.setItem(UNLOCK_KEY, '1');
+            document.getElementById('password').value = '';
+            showContent();
+          } else {
+            err.classList.add('show');
+          }
+        });
+      });
+
+      document.getElementById('lock-btn').addEventListener('click', showLogin);
+    })();
+  </script>
   <script>
     (function() {
       const lines = ['line2','line3','line4'];
