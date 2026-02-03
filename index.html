@@ -180,33 +180,69 @@
     .gap-msg p { margin: 0; color: var(--text); font-size: 0.95rem; }
     .gap-msg strong { color: var(--accent); }
 
-    /* Product flow diagram */
-    .product-flow {
+    /* Product hub - node connectors */
+    .product-hub {
+      position: relative;
+      margin: 2.5rem 0;
+      padding: 2rem;
+    }
+    .node-connector {
+      color: var(--muted);
+      font-size: 1.25rem;
+      opacity: 0.6;
+      align-self: center;
+    }
+    @media (max-width: 639px) {
+      .node-connector { display: none; }
+      .product-hub-nodes { flex-direction: column; }
+    }
+    .product-hub-nodes {
+      position: relative;
+      z-index: 1;
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .product-hub .node {
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin: 2rem 0;
-      padding: 1.5rem;
+      padding: 1rem 1.25rem;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-    .product-flow .box {
-      padding: 0.75rem 1.25rem;
-      border-radius: 8px;
+    .product-hub .node:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+    }
+    .product-hub .node.hub {
+      background: rgba(0,212,170,0.12);
+      border-color: rgba(0,212,170,0.4);
+    }
+    .product-hub .node.live { border-left: 3px solid var(--accent); }
+    .product-hub .node.coming { border-left: 3px solid var(--amber); opacity: 0.9; }
+    .product-hub .node-name { font-weight: 600; font-size: 1rem; color: var(--text); }
+    .product-hub .node-desc { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; text-align: center; }
+    .product-hub .node-badge {
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
       font-weight: 600;
-      font-size: 0.9rem;
     }
-    .product-flow .ptas { background: rgba(0,212,170,0.15); color: var(--accent); border: 1px solid rgba(0,212,170,0.3); }
-    .product-flow .arrow { color: var(--muted); font-size: 1.25rem; }
-    .product-flow .villager { background: rgba(139,92,246,0.15); color: var(--violet); border: 1px solid rgba(139,92,246,0.3); }
-    .product-flow .plus { color: var(--amber); font-weight: 700; }
+    .product-hub .node-badge.live { background: rgba(0,212,170,0.2); color: var(--accent); }
+    .product-hub .node-badge.coming { background: rgba(245,158,11,0.2); color: var(--amber); }
 
     /* Product cards */
     .products { display: grid; gap: 1.5rem; }
     @media (min-width: 640px) { .products { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .products { grid-template-columns: repeat(3, 1fr); } }
     .product-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -235,6 +271,22 @@
       transition: background 0.2s;
     }
     .product-card .cta:hover { background: var(--violet-dim); text-decoration: none !important; }
+    .product-card.coming .cta {
+      background: var(--border);
+      color: var(--muted) !important;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .product-card .badge-coming {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      background: rgba(245,158,11,0.2);
+      color: var(--amber);
+      font-size: 0.7rem;
+      font-weight: 600;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
 
     /* Compliance badges */
     .badges {
@@ -409,9 +461,9 @@
 
     <!-- Terminal Hero -->
     <div class="terminal-hero">
-      <div><span class="prompt">$</span> ganasec --scope approved --platform villager</div>
+      <div><span class="prompt">$</span> ganasec --scope approved --platform villager,asm,phishing</div>
       <div class="output" id="line2">▶ Loading scope from PTAS...</div>
-      <div class="output" id="line3">▶ Syncing targets to Villager</div>
+      <div class="output" id="line3">▶ Syncing targets to Villager, ASM, Phishing</div>
       <div class="success">✓ <span id="line4"></span><span class="cursor" id="cursor"></span></div>
     </div>
 
@@ -449,28 +501,72 @@
         </div>
       </div>
       <div class="gap-msg">
-        <p><strong>We're bridging the gap</strong> between PTAS and Villager—and building more products to follow. Approved scope flows into threat simulation; more integrations coming.</p>
+        <p><strong>One scope, many products.</strong> PTAS is the hub. Approved scope flows to Villager (threat sim), ASM (web scanner), Phishing, and more. We're building the connectors.</p>
       </div>
     </section>
 
     <section>
-      <h2>Products</h2>
-      <div class="product-flow">
-        <span class="box ptas">PTAS</span>
-        <span class="arrow">→</span>
-        <span class="box villager">Villager</span>
-        <span class="plus">+ more</span>
+      <h2>Product Ecosystem</h2>
+      <p>PTAS is the hub. Scope and approvals flow to Villager, ASM, Phishing, and more. One pipeline, connected products.</p>
+      <div class="product-hub">
+        <div class="product-hub-nodes">
+          <div class="node node-villager live">
+            <span class="node-name">Villager</span>
+            <span class="node-desc">Threat sim · BAS</span>
+            <span class="node-badge live">Live</span>
+          </div>
+          <span class="node-connector">⟷</span>
+          <div class="node node-ptas hub">
+            <span class="node-name">PTAS</span>
+            <span class="node-desc">Scope · Quote · Approve</span>
+            <span class="node-badge live">Hub</span>
+          </div>
+          <span class="node-connector">⟷</span>
+          <div class="node node-asm coming">
+            <span class="node-name">ASM / Scanner</span>
+            <span class="node-desc">Web app · Attack surface</span>
+            <span class="node-badge coming">Coming</span>
+          </div>
+          <span class="node-connector">⟷</span>
+          <div class="node node-phishing coming">
+            <span class="node-name">Phishing</span>
+            <span class="node-desc">Phishing sim</span>
+            <span class="node-badge coming">Coming</span>
+          </div>
+        </div>
       </div>
+      <div class="gap-msg">
+        <p><strong>We're building the connectors.</strong> PTAS feeds scope to Villager, ASM, Phishing, and future products. Free-form integrations—one approved engagement, many execution paths.</p>
+      </div>
+      <h2 style="margin-top: 2.5rem;">Products</h2>
       <div class="products">
         <div class="product-card">
           <h3>Ganasec PTAS</h3>
-          <p>Penetration Testing and Assessment Suite – scope intake, quotes, approvals, workflow for offensive security engagements.</p>
+          <p>Penetration Testing and Assessment Suite – scope intake, quotes, approvals, workflow. The hub that connects all products.</p>
           <a href="https://frontend-silk-zeta-84.vercel.app/" target="_blank" rel="noopener" class="cta">Start in PTAS →</a>
         </div>
         <div class="product-card">
           <h3>Villager</h3>
-          <p>Threat Simulation Platform – breach and attack simulation (BAS) with MITRE ATT&CK, plugins, agents, and threat intel. Use approved scope to run campaigns.</p>
+          <p>Threat Simulation Platform – breach and attack simulation (BAS) with MITRE ATT&CK, plugins, agents. Uses approved scope from PTAS.</p>
           <a href="https://frontend-alpha-inky-42.vercel.app/" target="_blank" rel="noopener" class="cta">Open Villager →</a>
+        </div>
+        <div class="product-card coming">
+          <span class="badge-coming">Coming soon</span>
+          <h3>ASM / Web Scanner</h3>
+          <p>Attack Surface Management and security scanner for web app testing. Discover, inventory, and scan web assets. Integrates with PTAS scope.</p>
+          <span class="cta">Coming soon</span>
+        </div>
+        <div class="product-card coming">
+          <span class="badge-coming">Coming soon</span>
+          <h3>Phishing Sim</h3>
+          <p>Phishing simulation and awareness. Campaigns, templates, reporting. Scope from PTAS defines target groups and approval.</p>
+          <span class="cta">Coming soon</span>
+        </div>
+        <div class="product-card coming">
+          <span class="badge-coming">Coming soon</span>
+          <h3>More Services</h3>
+          <p>Social engineering, red team, compliance audits—each as a connected product. PTAS remains the single point of scope and approval.</p>
+          <span class="cta">Coming soon</span>
         </div>
       </div>
     </section>
@@ -499,7 +595,7 @@
 
     <footer>
       <a href="https://ganasec.com" target="_blank" rel="noopener">ganasec.com</a> · GanaSec Cyber Solutions Private Limited
-      <p class="gap-tag">Bridging PTAS ↔ Villager. More products coming.</p>
+      <p class="gap-tag">PTAS ↔ Villager ↔ ASM ↔ Phishing. More products & connectors coming.</p>
     </footer>
   </div>
 
@@ -556,7 +652,7 @@
   <script>
     (function() {
       const lines = ['line2','line3','line4'];
-      const texts = ['▶ Loading scope from PTAS...','▶ Syncing targets to Villager','Ready. Run threat simulation.'];
+      const texts = ['▶ Loading scope from PTAS...','▶ Syncing targets to Villager, ASM, Phishing','Ready. Products connected.'];
       let li = 0, ch = 0;
 
       function type() {
