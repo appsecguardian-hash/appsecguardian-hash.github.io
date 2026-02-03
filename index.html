@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GanaSec Cyber Solutions – Penetrate. Protect. Persist.</title>
+  <title>GanaSec Cyber Solutions – Investor Brief</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -434,6 +434,38 @@
     }
     .lock-btn:hover { color: var(--accent); border-color: var(--accent); }
     .lock-btn.hidden { display: none; }
+
+    /* Investor sections */
+    .investor-badge { display: inline-block; padding: 0.2rem 0.6rem; background: rgba(139,92,246,0.2); color: var(--violet); font-size: 0.7rem; font-weight: 600; border-radius: 4px; letter-spacing: 0.05em; margin-bottom: 1rem; }
+    .hero-investor { font-size: 1.25rem; color: var(--muted); max-width: 640px; margin: 0 auto 1.5rem; line-height: 1.7; }
+    .section-investor { margin-bottom: 2.5rem; }
+    .market-gaps { display: grid; gap: 1rem; margin: 1.5rem 0; }
+    .gap-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+    .gap-item .icon { font-size: 1.25rem; flex-shrink: 0; color: var(--danger); opacity: 0.8; }
+    .gap-item h4 { font-size: 1rem; color: var(--text); margin-bottom: 0.35rem; }
+    .gap-item p { margin: 0; font-size: 0.9rem; }
+    .roadmap { margin: 1.5rem 0; }
+    .roadmap-row { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+    .roadmap-row:last-child { border-bottom: none; }
+    .roadmap-phase { font-weight: 600; color: var(--accent); min-width: 6rem; font-size: 0.9rem; }
+    .roadmap-desc { color: var(--muted); font-size: 0.9rem; }
+    .market-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    @media (min-width: 640px) { .market-stats { grid-template-columns: repeat(4, 1fr); } }
+    .market-stat { text-align: center; padding: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+    .market-stat .val { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+    .market-stat .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+    .comparison { overflow-x: auto; margin: 1.5rem 0; }
+    .comparison table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .comparison th, .comparison td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+    .comparison th { color: var(--muted); font-weight: 600; }
+    .comparison .check { color: var(--accent); }
+    .comparison .cross { color: var(--danger); opacity: 0.8; }
+    .cta-investor { background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(0,212,170,0.1)); border: 1px solid rgba(139,92,246,0.3); }
+    .cta-investor .btn { background: var(--violet); }
+    .cta-investor .btn:hover { background: var(--violet-dim); }
+    .nav-anchors { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin: 1.5rem 0 2rem; font-size: 0.85rem; }
+    .nav-anchors a { color: var(--muted); text-decoration: none; padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid var(--border); }
+    .nav-anchors a:hover { color: var(--accent); border-color: var(--accent); }
   </style>
 </head>
 <body>
@@ -441,7 +473,7 @@
   <div id="login-overlay">
     <div class="login-box">
       <h2>GanaSec</h2>
-      <p class="login-sub">Enter password to view</p>
+      <p class="login-sub">Investor Brief · Enter password to view</p>
       <form id="login-form">
         <label for="password" class="login-label">Password</label>
         <input type="password" id="password" name="password" placeholder="Enter password" autocomplete="current-password" autofocus required>
@@ -455,8 +487,19 @@
 
   <div id="main-content" class="container">
     <header>
+      <span class="investor-badge">Confidential · For Investors</span>
       <div class="logo">GanaSec Cyber Solutions Private Limited</div>
       <p class="tagline"><strong>Penetrate.</strong> Protect. <strong>Persist.</strong></p>
+      <p class="hero-investor">We're building a unified security platform: one scope, one approval, many execution products. PTAS (scope & workflow) connects to Villager (threat simulation), ASM (web scanning), Phishing, and more. We close the gap between siloed tools and unified delivery.</p>
+      <nav class="nav-anchors">
+        <a href="#market">Market</a>
+        <a href="#gaps">Gaps</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#products">Products</a>
+        <a href="#business">Business Model</a>
+        <a href="#competition">Competition</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
     <!-- Terminal Hero -->
@@ -474,6 +517,71 @@
       <div class="stat-card"><div class="stat-value">&lt;15min</div><div class="stat-label">Avg Response Time</div></div>
       <div class="stat-card"><div class="stat-value">Zero</div><div class="stat-label">Successful Breaches</div></div>
     </div>
+
+    <section class="section-investor" id="market">
+      <h2>Market Opportunity</h2>
+      <p>Offensive security and breach simulation are fragmented. Enterprises use point tools for pentesting, BAS, ASM, phishing—each with its own scope, vendor, and workflow. We consolidate.</p>
+      <div class="market-stats">
+        <div class="market-stat"><div class="val">$24B+</div><div class="lbl">Global pentest/BAS TAM (2030)</div></div>
+        <div class="market-stat"><div class="val">35%</div><div class="lbl">CAGR · Security testing</div></div>
+        <div class="market-stat"><div class="val">2,500+</div><div class="lbl">Assessments delivered</div></div>
+        <div class="market-stat"><div class="val">India</div><div class="lbl">HQ · Global delivery</div></div>
+      </div>
+    </section>
+
+    <section class="section-investor" id="gaps">
+      <h2>Market Gaps We Address</h2>
+      <p>Incumbents and point solutions leave critical gaps. We fill them.</p>
+      <div class="market-gaps">
+        <div class="gap-item">
+          <span class="icon">✕</span>
+          <div>
+            <h4>Siloed tools, no unified scope</h4>
+            <p>Pentest, BAS, ASM, phishing each require separate scoping and approval. We unify: one scope in PTAS flows to all execution products.</p>
+          </div>
+        </div>
+        <div class="gap-item">
+          <span class="icon">✕</span>
+          <div>
+            <h4>Manual handoffs and re-scoping</h4>
+            <p>Clients re-scope for every service. We eliminate duplication: approve once, run threat sim, ASM, phishing from the same scope.</p>
+          </div>
+        </div>
+        <div class="gap-item">
+          <span class="icon">✕</span>
+          <div>
+            <h4>Fragmented workflow & compliance</h4>
+            <p>Quote, SOW, approval live in email and spreadsheets. PTAS centralizes engagement workflow; compliance and audit trail built-in.</p>
+          </div>
+        </div>
+        <div class="gap-item">
+          <span class="icon">✕</span>
+          <div>
+            <h4>No single platform for SMB/mid-market</h4>
+            <p>Enterprise BAS and pentest platforms are costly and complex. We offer platform + services at accessible pricing for SMB and mid-market.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-investor" id="roadmap">
+      <h2>Roadmap</h2>
+      <p>Phased rollout: live products today, connectors and new products in pipeline.</p>
+      <div class="roadmap">
+        <div class="roadmap-row">
+          <span class="roadmap-phase">Now</span>
+          <span class="roadmap-desc">PTAS live (scope, quote, workflow). Villager live (threat sim, MITRE ATT&CK, agents). 2,500+ assessments delivered.</span>
+        </div>
+        <div class="roadmap-row">
+          <span class="roadmap-phase">Q2–Q3</span>
+          <span class="roadmap-desc">PTAS ↔ Villager scope sync. ASM / Web Scanner (attack surface, web app testing). Phishing Sim (campaigns, templates).</span>
+        </div>
+        <div class="roadmap-row">
+          <span class="roadmap-phase">Q4+</span>
+          <span class="roadmap-desc">Social engineering, red team modules. API for third-party integrations. Enterprise features, SSO, audit logs.</span>
+        </div>
+      </div>
+    </section>
 
     <section>
       <h2>How It Works</h2>
@@ -505,7 +613,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="products">
       <h2>Product Ecosystem</h2>
       <p>PTAS is the hub. Scope and approvals flow to Villager, ASM, Phishing, and more. One pipeline, connected products.</p>
       <div class="product-hub">
@@ -571,11 +679,58 @@
       </div>
     </section>
 
+    <section class="section-investor" id="business">
+      <h2>Business Model</h2>
+      <p>Platform + services. Recurring revenue from product subscriptions; professional services for assessments and custom work.</p>
+      <div class="market-gaps">
+        <div class="gap-item biz">
+          <span class="icon">$</span>
+          <div>
+            <h4>PTAS</h4>
+            <p>SaaS subscription for scope, quote, workflow. Per-seat or per-engagement pricing.</p>
+          </div>
+        </div>
+        <div class="gap-item">
+          <span class="icon">$</span>
+          <div>
+            <h4>Villager & Execution Products</h4>
+            <p>Usage-based or subscription. BAS runs, ASM scans, phishing campaigns billed per engagement or tier.</p>
+          </div>
+        </div>
+        <div class="gap-item">
+          <span class="icon">$</span>
+          <div>
+            <h4>Professional Services</h4>
+            <p>Pentesting, red team, compliance audits. High-margin, sticky; feeds platform adoption.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-investor" id="competition">
+      <h2>Competitive Landscape</h2>
+      <p>We differentiate by unifying scope and execution across multiple products. Incumbents are point solutions.</p>
+      <div class="comparison">
+        <table>
+          <thead><tr><th></th><th>GanaSec</th><th>Point BAS</th><th>Point Pentest</th><th>Consultancies</th></tr></thead>
+          <tbody>
+            <tr><td>Unified scope hub</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
+            <tr><td>Threat sim (BAS)</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+            <tr><td>ASM / Web scanner</td><td class="check">Roadmap</td><td>Some</td><td class="cross">—</td><td>Manual</td></tr>
+            <tr><td>Phishing sim</td><td class="check">Roadmap</td><td>Some</td><td class="cross">—</td><td>Manual</td></tr>
+            <tr><td>Engagement workflow</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td>Spreadsheets</td></tr>
+            <tr><td>SMB / mid-market focus</td><td class="check">✓</td><td class="cross">Enterprise</td><td>Mixed</td><td>Mixed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <section>
       <h2>About</h2>
       <div class="profile">
         <p>Elite cybersecurity operations. Advanced penetration testing and security services that expose vulnerabilities before attackers do. Trusted by companies worldwide.</p>
-        <p>CREST-certified and OSCP testers. PCI DSS, HIPAA, GDPR, ISO 27001, SOC 2, and OWASP pentesting. 24/7 response. India · <a href="https://ganasec.com" target="_blank" rel="noopener">ganasec.com</a></p>
+        <p><strong>Credentials:</strong> CREST-certified and OSCP testers. Regulator experience: US SEC, Banxico, Dubai FSA, SEBI. PCI DSS, HIPAA, GDPR, ISO 27001, SOC 2, OWASP pentesting. 24/7 response. India · <a href="https://ganasec.com" target="_blank" rel="noopener">ganasec.com</a></p>
+        <p style="margin-top: 1rem;"><strong>Traction:</strong> 2,500+ security assessments delivered. Zero successful breaches among clients. PTAS and Villager live. Products in active use.</p>
         <div class="badges">
           <span class="badge">PCI DSS</span>
           <span class="badge">HIPAA</span>
@@ -587,15 +742,16 @@
       </div>
     </section>
 
-    <div class="cta-block">
-      <h3>Ready to Test Your Defenses?</h3>
-      <p>Schedule a penetration test or security assessment with our team.</p>
-      <a href="https://cal.com/ganasec/30min" target="_blank" rel="noopener" class="btn">Request Penetration Test</a>
+    <div class="cta-block cta-investor" id="contact">
+      <h3>Interested in Learning More?</h3>
+      <p>Request our investor deck or schedule a call to discuss market opportunity, traction, and plans.</p>
+      <a href="https://cal.com/ganasec/30min" target="_blank" rel="noopener" class="btn">Schedule Investor Call</a>
+      <p style="margin-top: 1rem; font-size: 0.85rem;"><a href="mailto:appsecguardian@gmail.com">appsecguardian@gmail.com</a> · <a href="https://ganasec.com" target="_blank" rel="noopener">ganasec.com</a></p>
     </div>
 
     <footer>
       <a href="https://ganasec.com" target="_blank" rel="noopener">ganasec.com</a> · GanaSec Cyber Solutions Private Limited
-      <p class="gap-tag">PTAS ↔ Villager ↔ ASM ↔ Phishing. More products & connectors coming.</p>
+      <p class="gap-tag">PTAS ↔ Villager ↔ ASM ↔ Phishing. Confidential · GanaSec Cyber Solutions Private Limited</p>
     </footer>
   </div>
 
