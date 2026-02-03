@@ -299,18 +299,25 @@
     footer a:hover { text-decoration: underline; }
     footer .gap-tag { margin-top: 0.75rem; font-size: 0.8rem; }
 
-    /* Login overlay */
+    /* Login overlay - always on top until unlocked */
     #login-overlay {
       position: fixed;
-      inset: 0;
-      z-index: 9999;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      min-height: 100vh;
+      z-index: 99999;
       background: var(--bg);
-      display: flex;
+      display: flex !important;
       align-items: center;
       justify-content: center;
       padding: 2rem;
     }
-    #login-overlay.hidden { display: none; }
+    #login-overlay.hidden { display: none !important; }
+    #main-content { display: none; }
+    #main-content.unlocked { display: block; }
     .login-box {
       width: 100%;
       max-width: 380px;
@@ -320,8 +327,9 @@
       padding: 2rem;
       box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
-    .login-box h2 { margin-bottom: 0.5rem; }
-    .login-box p { margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .login-box h2 { margin-bottom: 0.5rem; color: var(--accent); }
+    .login-box .login-sub { margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .login-box .login-label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
     .login-box input {
       width: 100%;
       padding: 0.75rem 1rem;
@@ -377,13 +385,14 @@
   </style>
 </head>
 <body>
-  <!-- Login overlay -->
+  <!-- Login overlay - shows first, blocks content until correct password -->
   <div id="login-overlay">
     <div class="login-box">
       <h2>GanaSec</h2>
-      <p>Enter password to access</p>
+      <p class="login-sub">Enter password to view</p>
       <form id="login-form">
-        <input type="password" id="password" placeholder="Password" autocomplete="current-password" autofocus>
+        <label for="password" class="login-label">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" autocomplete="current-password" autofocus required>
         <button type="submit" class="btn-login">Unlock</button>
         <div class="error" id="login-error">Incorrect password</div>
       </form>
@@ -511,20 +520,18 @@
 
       function showContent() {
         document.getElementById('login-overlay').classList.add('hidden');
-        document.getElementById('main-content').style.display = 'block';
+        document.getElementById('main-content').classList.add('unlocked');
         document.getElementById('lock-btn').classList.remove('hidden');
       }
       function showLogin() {
         document.getElementById('login-overlay').classList.remove('hidden');
-        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('main-content').classList.remove('unlocked');
         document.getElementById('lock-btn').classList.add('hidden');
         sessionStorage.removeItem(UNLOCK_KEY);
       }
 
       if (sessionStorage.getItem(UNLOCK_KEY) === '1') {
         showContent();
-      } else {
-        document.getElementById('main-content').style.display = 'none';
       }
 
       document.getElementById('login-form').addEventListener('submit', function(e) {
