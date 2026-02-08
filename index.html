@@ -489,6 +489,27 @@
     .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
     .tech-pill { padding: 0.35rem 0.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted); }
     .tech-arch { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; background: var(--bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--border); overflow-x: auto; color: var(--muted); line-height: 1.7; margin-top: 1rem; }
+    .arch-diagram { margin-top: 1.5rem; }
+    .arch-layer { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 0.5rem; }
+    .arch-layer:hover { border-color: var(--accent); }
+    .arch-layer-label { font-size: 0.75rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .arch-layer-content { font-size: 0.9rem; color: var(--text); }
+    .arch-agents { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 0.5rem; }
+    @media (min-width: 640px) { .arch-agents { grid-template-columns: repeat(4, 1fr); } }
+    .arch-agent { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.75rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+    .arch-agent:hover { border-color: var(--violet); transform: translateY(-1px); }
+    .arch-agent-name { font-weight: 600; font-size: 0.85rem; color: var(--text); }
+    .arch-agent-role { font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; }
+    .arch-infra { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .arch-infra-item { padding: 0.4rem 0.75rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; font-size: 0.8rem; color: var(--muted); }
+    .arch-arrow { text-align: center; color: var(--accent); font-size: 1.25rem; margin: 0.25rem 0; opacity: 0.6; }
+    .tools-section { margin-top: 2rem; }
+    .tools-section h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
+    .tools-cat { margin-bottom: 1.25rem; }
+    .tools-cat-label { font-size: 0.8rem; font-weight: 600; color: var(--violet); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tool-tag { padding: 0.25rem 0.6rem; background: var(--surface); border: 1px solid var(--border); border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); transition: color 0.2s, border-color 0.2s; }
+    .tool-tag:hover { color: var(--accent); border-color: var(--accent); }
   </style>
 </head>
 <body>
@@ -809,23 +830,168 @@
         <span class="tech-pill">Vercel</span>
         <span class="tech-pill">60+ Security Tools</span>
       </div>
-      <div class="tech-arch">
-┌─────────────────────────────────────────────────────────────┐
-│  PTAS (scope/quote) → Approved Scope → Villager API        │
-├─────────────────────────────────────────────────────────────┤
-│  Orchestrator AI (GPT-4o) ─── ReAct reasoning loop         │
-│    ├── Recon Agent ──── Network/system discovery            │
-│    ├── Exploit Agent ── Privilege escalation                │
-│    ├── Lateral Agent ── SSH pivoting, credential reuse      │
-│    ├── Persist Agent ── Cron, systemd, SSH key backdoors    │
-│    ├── Exfil Agent ──── Data staging & exfil channels       │
-│    ├── Evasion Agent ── Log clearing, timestomping          │
-│    ├── Detection Agent ─ Blue team visibility monitoring    │
-│    └── Intel Agent ──── Live threat intel & tactical advice │
-├─────────────────────────────────────────────────────────────┤
-│  Shared Memory │ WebSocket Stream │ MITRE ATT&CK Mapping   │
-│  Redis Queue   │ 60+ Tools        │ AI Executive Reports   │
-└─────────────────────────────────────────────────────────────┘</div>
+      <div class="arch-diagram">
+        <!-- Layer 1: Entry -->
+        <div class="arch-layer" style="border-color: var(--accent);">
+          <div class="arch-layer-label">Entry</div>
+          <div class="arch-layer-content">PTAS (scope/quote) → Approved Scope → <strong style="color:var(--accent)">Villager API</strong></div>
+        </div>
+        <div class="arch-arrow">▼</div>
+
+        <!-- Layer 2: Orchestrator -->
+        <div class="arch-layer" style="border-color: var(--violet);">
+          <div class="arch-layer-label" style="color:var(--violet)">Orchestrator AI (GPT-4o) — ReAct Reasoning Loop</div>
+          <div class="arch-agents">
+            <div class="arch-agent"><div class="arch-agent-name">Recon</div><div class="arch-agent-role">Network / system discovery</div></div>
+            <div class="arch-agent"><div class="arch-agent-name">Exploit</div><div class="arch-agent-role">Privilege escalation</div></div>
+            <div class="arch-agent"><div class="arch-agent-name">Lateral</div><div class="arch-agent-role">SSH pivoting, cred reuse</div></div>
+            <div class="arch-agent"><div class="arch-agent-name">Persist</div><div class="arch-agent-role">Cron, systemd, SSH keys</div></div>
+            <div class="arch-agent"><div class="arch-agent-name">Exfil</div><div class="arch-agent-role">Data staging & channels</div></div>
+            <div class="arch-agent"><div class="arch-agent-name">Evasion</div><div class="arch-agent-role">Log clearing, timestomp</div></div>
+            <div class="arch-agent"><div class="arch-agent-name">Detection</div><div class="arch-agent-role">Blue team monitoring</div></div>
+            <div class="arch-agent"><div class="arch-agent-name">Intel</div><div class="arch-agent-role">Threat intel & tactics</div></div>
+          </div>
+        </div>
+        <div class="arch-arrow">▼</div>
+
+        <!-- Layer 3: Infrastructure -->
+        <div class="arch-layer">
+          <div class="arch-layer-label">Infrastructure</div>
+          <div class="arch-infra">
+            <span class="arch-infra-item">Shared Memory</span>
+            <span class="arch-infra-item">WebSocket Stream</span>
+            <span class="arch-infra-item">MITRE ATT&CK Mapping</span>
+            <span class="arch-infra-item">Redis Queue</span>
+            <span class="arch-infra-item">60+ Tools</span>
+            <span class="arch-infra-item">AI Executive Reports</span>
+            <span class="arch-infra-item">Sigma/KQL Generation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools Library -->
+      <div class="tools-section">
+        <h3>Integrated Tool Library (60+)</h3>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">Enumeration & Discovery</div>
+          <div class="tools-grid">
+            <span class="tool-tag">Nmap</span>
+            <span class="tool-tag">LinPEAS</span>
+            <span class="tool-tag">WinPEAS</span>
+            <span class="tool-tag">Enum4linux-ng</span>
+            <span class="tool-tag">Nikto</span>
+            <span class="tool-tag">Gobuster</span>
+            <span class="tool-tag">Feroxbuster</span>
+            <span class="tool-tag">ADRecon</span>
+            <span class="tool-tag">Masscan</span>
+            <span class="tool-tag">Deepce</span>
+            <span class="tool-tag">CDK</span>
+          </div>
+        </div>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">Exploitation & Privilege Escalation</div>
+          <div class="tools-grid">
+            <span class="tool-tag">Metasploit</span>
+            <span class="tool-tag">GTFOBins (SUID)</span>
+            <span class="tool-tag">Sudo Exploits</span>
+            <span class="tool-tag">Kernel Exploits</span>
+            <span class="tool-tag">PrintNightmare</span>
+            <span class="tool-tag">PetitPotam</span>
+            <span class="tool-tag">Coercer</span>
+          </div>
+        </div>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">Credential Access</div>
+          <div class="tools-grid">
+            <span class="tool-tag">Mimikatz</span>
+            <span class="tool-tag">Secretsdump</span>
+            <span class="tool-tag">Hashcat</span>
+            <span class="tool-tag">John the Ripper</span>
+            <span class="tool-tag">Responder</span>
+            <span class="tool-tag">Kerbrute</span>
+            <span class="tool-tag">Hydra</span>
+            <span class="tool-tag">SharpDPAPI</span>
+          </div>
+        </div>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">Lateral Movement</div>
+          <div class="tools-grid">
+            <span class="tool-tag">Impacket</span>
+            <span class="tool-tag">Evil-WinRM</span>
+            <span class="tool-tag">PsExec</span>
+            <span class="tool-tag">WMIExec</span>
+            <span class="tool-tag">NetExec</span>
+            <span class="tool-tag">Ligolo-ng</span>
+          </div>
+        </div>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">Active Directory & Kerberos</div>
+          <div class="tools-grid">
+            <span class="tool-tag">BloodHound</span>
+            <span class="tool-tag">Rubeus</span>
+            <span class="tool-tag">Certipy</span>
+            <span class="tool-tag">PowerView</span>
+            <span class="tool-tag">SharpHound</span>
+          </div>
+        </div>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">Web Application</div>
+          <div class="tools-grid">
+            <span class="tool-tag">Nuclei</span>
+            <span class="tool-tag">SQLMap</span>
+            <span class="tool-tag">ffuf</span>
+            <span class="tool-tag">XSStrike</span>
+            <span class="tool-tag">Subfinder</span>
+            <span class="tool-tag">HTTPX</span>
+          </div>
+        </div>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">C2 Frameworks</div>
+          <div class="tools-grid">
+            <span class="tool-tag">Sliver</span>
+            <span class="tool-tag">Metasploit</span>
+            <span class="tool-tag">Havoc</span>
+            <span class="tool-tag">Cobalt Strike (ref)</span>
+          </div>
+        </div>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">Proxy & Tunneling</div>
+          <div class="tools-grid">
+            <span class="tool-tag">Chisel</span>
+            <span class="tool-tag">Proxychains</span>
+            <span class="tool-tag">SSHuttle</span>
+            <span class="tool-tag">Socat</span>
+          </div>
+        </div>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">Cloud & Container</div>
+          <div class="tools-grid">
+            <span class="tool-tag">Pacu (AWS)</span>
+            <span class="tool-tag">ScoutSuite</span>
+            <span class="tool-tag">Deepce</span>
+            <span class="tool-tag">CDK (Kubernetes)</span>
+          </div>
+        </div>
+
+        <div class="tools-cat">
+          <div class="tools-cat-label">Defense Evasion</div>
+          <div class="tools-grid">
+            <span class="tool-tag">AMSI Bypass</span>
+            <span class="tool-tag">ETW Patch</span>
+            <span class="tool-tag">Log Cleaner</span>
+            <span class="tool-tag">Timestomp</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section>
