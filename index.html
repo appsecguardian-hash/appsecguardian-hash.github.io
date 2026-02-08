@@ -513,7 +513,7 @@
       <span class="investor-badge">Confidential · For Investors</span>
       <div class="logo">GanaSec Cyber Solutions Private Limited</div>
       <p class="tagline"><strong>Penetrate.</strong> Protect. <strong>Persist.</strong></p>
-      <p class="hero-investor">We're building a unified security platform: one scope, one approval, many execution products. PTAS (scope & workflow) connects to Villager (threat simulation), ASM (web scanning), Phishing, and more. We close the gap between siloed tools and unified delivery.</p>
+      <p class="hero-investor">We're building a unified security platform powered by Multi-Agentic AI. PTAS (scope & workflow) connects to Villager (the world's first multi-agentic AI threat simulation), ASM (web scanning), Phishing, and more. 8 autonomous AI agents collaborate to simulate real APT attacks — not scripts. Real reasoning.</p>
       <nav class="nav-anchors">
         <a href="#market">Market</a>
         <a href="#gaps">Gaps</a>
@@ -529,9 +529,9 @@
 
     <!-- Terminal Hero -->
     <div class="terminal-hero">
-      <div><span class="prompt">$</span> ganasec --scope approved --platform villager,asm,phishing</div>
+      <div><span class="prompt">$</span> ganasec --scope approved --platform villager --strategy apt-emulation</div>
       <div class="output" id="line2">▶ Loading scope from PTAS...</div>
-      <div class="output" id="line3">▶ Syncing targets to Villager, ASM, Phishing</div>
+      <div class="output" id="line3">▶ Deploying AI Swarm: Recon → Exploit → Lateral → Persist → Exfil</div>
       <div class="success">✓ <span id="line4"></span><span class="cursor" id="cursor"></span></div>
     </div>
 
@@ -541,6 +541,11 @@
       <div class="stat-card"><div class="stat-value">99%</div><div class="stat-label">Critical Vulnerabilities</div></div>
       <div class="stat-card"><div class="stat-value">&lt;15min</div><div class="stat-label">Avg Response Time</div></div>
       <div class="stat-card"><div class="stat-value">Zero</div><div class="stat-label">Successful Breaches</div></div>
+    </div>
+
+    <div class="gap-msg" style="margin-bottom: 3rem;">
+      <p style="font-size: 1.1rem; margin-bottom: 0.5rem;"><strong>Key Differentiator:</strong> Villager is the world's first <strong style="color:var(--violet)">Multi-Agentic AI</strong> threat simulation platform.</p>
+      <p style="margin: 0; font-size: 0.95rem;">8 autonomous AI agents collaborate to simulate real APT attacks — they <em>reason, adapt, and pivot</em> based on what they discover. Unlike every other BAS tool that replays scripted attacks, Villager's AI thinks like a real threat actor. <strong>Live now</strong> — competitors are still in development.</p>
     </div>
 
     <section class="section-investor" id="market">
@@ -623,16 +628,20 @@
       <p>Phased rollout: live products today, connectors and new products in pipeline.</p>
       <div class="roadmap">
         <div class="roadmap-row">
-          <span class="roadmap-phase">Now</span>
-          <span class="roadmap-desc">PTAS live (scope, quote, workflow). Villager live (threat sim, MITRE ATT&CK, agents). 2,500+ assessments delivered.</span>
+          <span class="roadmap-phase">Now ✓</span>
+          <span class="roadmap-desc">PTAS live (scope, quote, workflow). <strong>Villager live</strong> — Multi-Agentic AI Swarm (8 agents), 60+ tools, MITRE ATT&CK native, AI-generated Sigma/KQL rules, AI executive reports. 2,500+ assessments delivered.</span>
         </div>
         <div class="roadmap-row">
-          <span class="roadmap-phase">Q2–Q3</span>
-          <span class="roadmap-desc">PTAS ↔ Villager scope sync. ASM / Web Scanner (attack surface, web app testing). Phishing Sim (campaigns, templates).</span>
+          <span class="roadmap-phase">Q2 2026</span>
+          <span class="roadmap-desc">PTAS ↔ Villager scope sync. Cloud target support (AWS/Azure/GCP). Dynamic agent generation from config files. Plugin marketplace.</span>
         </div>
         <div class="roadmap-row">
-          <span class="roadmap-phase">Q4+</span>
-          <span class="roadmap-desc">Social engineering, red team modules. API for third-party integrations. Enterprise features, SSO, audit logs.</span>
+          <span class="roadmap-phase">Q3 2026</span>
+          <span class="roadmap-desc">ASM / Web Scanner (attack surface, web app testing). Phishing Sim (campaigns, templates). SIEM/SOAR bi-directional integrations.</span>
+        </div>
+        <div class="roadmap-row">
+          <span class="roadmap-phase">Q4 2026+</span>
+          <span class="roadmap-desc">Social engineering, red team modules. Enterprise SSO/SCIM. API marketplace for third-party tool integrations. Compliance automation.</span>
         </div>
       </div>
     </section>
@@ -658,8 +667,8 @@
         </div>
         <div class="process-step">
           <div class="num">4</div>
-          <h4>Threat Sim</h4>
-          <p>Approved scope → Villager; run campaigns</p>
+          <h4>AI Swarm</h4>
+          <p>Approved scope → Villager AI Swarm; 8 agents simulate real APT attacks</p>
         </div>
       </div>
       <div class="gap-msg">
@@ -674,7 +683,7 @@
         <div class="product-hub-nodes">
           <div class="node node-villager live">
             <span class="node-name">Villager</span>
-            <span class="node-desc">Threat sim · BAS</span>
+            <span class="node-desc">Multi-Agentic AI · BAS</span>
             <span class="node-badge live">Live</span>
           </div>
           <span class="node-connector">⟷</span>
@@ -709,7 +718,7 @@
         </div>
         <div class="product-card">
           <h3>Villager</h3>
-          <p>Threat Simulation Platform – breach and attack simulation (BAS) with MITRE ATT&CK, plugins, agents. Uses approved scope from PTAS.</p>
+          <p>Multi-Agentic AI Threat Simulation – 8 autonomous AI agents simulate real APT attacks. 60+ tools, MITRE ATT&CK native, live attack graphs, AI-generated executive reports.</p>
           <a href="https://frontend-alpha-inky-42.vercel.app/" target="_blank" rel="noopener" class="cta">Open Villager →</a>
         </div>
         <div class="product-card coming">
@@ -747,8 +756,8 @@
         <div class="gap-item">
           <span class="icon">$</span>
           <div>
-            <h4>Villager & Execution Products</h4>
-            <p>Usage-based or subscription. BAS runs, ASM scans, phishing campaigns billed per engagement or tier.</p>
+            <h4>Villager (Multi-Agentic AI BAS)</h4>
+            <p>Usage-based or subscription. AI Swarm runs, 60+ tools, AI detection rules, AI executive reports. Tiered: Starter, Pro, Enterprise.</p>
           </div>
         </div>
         <div class="gap-item">
@@ -763,37 +772,60 @@
 
     <section class="section-investor" id="competition">
       <h2>Competitive Landscape</h2>
-      <p>We differentiate by unifying scope and execution across multiple products. Incumbents are point solutions.</p>
+      <p>We differentiate with <strong>Multi-Agentic AI</strong> — real autonomous reasoning — not scripted playbacks. Plus unified scope across products.</p>
       <div class="comparison">
         <table>
-          <thead><tr><th></th><th>GanaSec</th><th>Point BAS</th><th>Point Pentest</th><th>Consultancies</th></tr></thead>
+          <thead><tr><th></th><th style="color:var(--accent)">GanaSec / Villager</th><th>Cyllex</th><th>SafeBreach / AttackIQ</th><th>Consultancies</th></tr></thead>
           <tbody>
-            <tr><td>Unified scope hub</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
-            <tr><td>Threat sim (BAS)</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
-            <tr><td>ASM / Web scanner</td><td class="check">Roadmap</td><td>Some</td><td class="cross">—</td><td>Manual</td></tr>
-            <tr><td>Phishing sim</td><td class="check">Roadmap</td><td>Some</td><td class="cross">—</td><td>Manual</td></tr>
-            <tr><td>Engagement workflow</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td>Spreadsheets</td></tr>
-            <tr><td>SMB / mid-market focus</td><td class="check">✓</td><td class="cross">Enterprise</td><td>Mixed</td><td>Mixed</td></tr>
+            <tr><td>AI approach</td><td class="check">8 autonomous agents (reasoning)</td><td class="cross">Scripted campaigns</td><td class="cross">Scripted playbooks</td><td class="cross">Manual</td></tr>
+            <tr><td>Attack adaptation</td><td class="check">AI pivots on discoveries</td><td class="cross">Pre-defined chains</td><td class="cross">Pre-defined chains</td><td class="cross">Manual</td></tr>
+            <tr><td>Tool library</td><td class="check">60+ integrated tools</td><td>Agent-based</td><td>Proprietary agents</td><td>Manual</td></tr>
+            <tr><td>AI detection rules</td><td class="check">Sigma + KQL generation</td><td class="cross">—</td><td>Some</td><td class="cross">—</td></tr>
+            <tr><td>AI executive reports</td><td class="check">CISO-ready with risk ratings</td><td class="cross">—</td><td>Basic PDF</td><td>Manual</td></tr>
+            <tr><td>Unified scope hub (PTAS)</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td><td class="cross">—</td></tr>
+            <tr><td>MITRE coverage</td><td class="check">500+ techniques</td><td class="check">Matrix view</td><td class="check">High</td><td>Varies</td></tr>
+            <tr><td>Live attack graph</td><td class="check">✓ (real-time)</td><td class="cross">—</td><td>Dashboard</td><td class="cross">—</td></tr>
+            <tr><td>Status</td><td class="check" style="color:var(--accent)">Live now</td><td style="color:var(--amber)">Est. March 2026</td><td class="check">Enterprise $$$</td><td class="check">Active</td></tr>
+            <tr><td>Pricing</td><td class="check">SMB-accessible</td><td>TBD</td><td class="cross">Enterprise-only</td><td>Project-based</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
     <section class="section-investor" id="tech">
-      <h2>Technical</h2>
-      <p>Modern stack. API-first. Scalable infrastructure.</p>
+      <h2>Technical Architecture</h2>
+      <p>Modern stack. API-first. Multi-agentic AI core. Scalable infrastructure.</p>
       <div class="tech-stack">
         <span class="tech-pill">Node.js</span>
         <span class="tech-pill">React</span>
         <span class="tech-pill">MongoDB</span>
         <span class="tech-pill">Redis</span>
+        <span class="tech-pill">GPT-4o / OpenAI</span>
+        <span class="tech-pill">WebSocket</span>
         <span class="tech-pill">MITRE ATT&CK</span>
         <span class="tech-pill">SSH / WinRM</span>
         <span class="tech-pill">REST API</span>
         <span class="tech-pill">Bull Queue</span>
         <span class="tech-pill">Vercel</span>
+        <span class="tech-pill">60+ Security Tools</span>
       </div>
-      <div class="tech-arch">PTAS (scope/quote) → API → Villager (BAS) · Agent + agentless execution · Redis-backed job queue · Webhook/SIEM integrations</div>
+      <div class="tech-arch">
+┌─────────────────────────────────────────────────────────────┐
+│  PTAS (scope/quote) → Approved Scope → Villager API        │
+├─────────────────────────────────────────────────────────────┤
+│  Orchestrator AI (GPT-4o) ─── ReAct reasoning loop         │
+│    ├── Recon Agent ──── Network/system discovery            │
+│    ├── Exploit Agent ── Privilege escalation                │
+│    ├── Lateral Agent ── SSH pivoting, credential reuse      │
+│    ├── Persist Agent ── Cron, systemd, SSH key backdoors    │
+│    ├── Exfil Agent ──── Data staging & exfil channels       │
+│    ├── Evasion Agent ── Log clearing, timestomping          │
+│    ├── Detection Agent ─ Blue team visibility monitoring    │
+│    └── Intel Agent ──── Live threat intel & tactical advice │
+├─────────────────────────────────────────────────────────────┤
+│  Shared Memory │ WebSocket Stream │ MITRE ATT&CK Mapping   │
+│  Redis Queue   │ 60+ Tools        │ AI Executive Reports   │
+└─────────────────────────────────────────────────────────────┘</div>
     </section>
 
     <section>
@@ -814,7 +846,7 @@
         </div>
         <p>Elite cybersecurity operations. Advanced penetration testing and security services that expose vulnerabilities before attackers do. Trusted by companies worldwide.</p>
         <p><strong>Credentials:</strong> CREST-certified and OSCP testers. Regulator experience: US SEC, Banxico, Dubai FSA, SEBI. PCI DSS, HIPAA, GDPR, ISO 27001, SOC 2, OWASP pentesting. 24/7 response. India · <a href="https://ganasec.com" target="_blank" rel="noopener">ganasec.com</a></p>
-        <p style="margin-top: 1rem;"><strong>Traction:</strong> 2,500+ security assessments delivered. Zero successful breaches among clients. PTAS and Villager live. Products in active use.</p>
+        <p style="margin-top: 1rem;"><strong>Traction:</strong> 2,500+ security assessments delivered. Zero successful breaches among clients. PTAS and Villager live. Villager ships with Multi-Agentic AI Swarm (8 autonomous agents), 60+ integrated tools, AI-generated executive reports and detection rules. Products in active use.</p>
         <div class="badges">
           <span class="badge">PCI DSS</span>
           <span class="badge">HIPAA</span>
@@ -892,7 +924,7 @@
   <script>
     (function() {
       const lines = ['line2','line3','line4'];
-      const texts = ['▶ Loading scope from PTAS...','▶ Syncing targets to Villager, ASM, Phishing','Ready. Products connected.'];
+      const texts = ['▶ Loading scope from PTAS...','▶ Deploying AI Swarm: Recon → Exploit → Lateral → Persist → Exfil','Ready. 8 agents active. MITRE ATT&CK mapped.'];
       let li = 0, ch = 0;
 
       function type() {
